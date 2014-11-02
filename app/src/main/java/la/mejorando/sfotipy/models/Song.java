@@ -7,7 +7,7 @@ public class Song {
 
     private String songName;
     private String songArtist;
-    private int    stars;
+    private float    stars;
 
     public String getSongName() {
         return songName;
@@ -25,11 +25,11 @@ public class Song {
         this.songArtist = songArtist;
     }
 
-    public int getStars() {
+    public float getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void setStars(float stars) {
         this.stars = stars;
     }
 }

@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'android-L'
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.1"
 
     defaultConfig {
         applicationId "la.mejorando.sfotipy"
-        minSdkVersion 'L'
-        targetSdkVersion 'L'
-        versionCode 1
+        minSdkVersion 21
+        targetSdkVersion 21
+        versionCode 21
         versionName "1.0"
     }
     buildTypes {

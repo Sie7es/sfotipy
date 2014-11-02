@@ -30,7 +30,6 @@ public class WelcometoSfotipy extends Activity {
         Outline outline = new Outline();
         outline.setOval(0, 0, size, size);
         ImageButton imageButton = (ImageButton) findViewById(R.id.fab_1);
-        imageButton.setOutline(outline);
 
 
 

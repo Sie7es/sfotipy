@@ -16,7 +16,7 @@ import la.mejorando.sfotipy.models.Song;
  * Created by thespianartist on 25/09/14.
  */
 
-public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
+public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder> implements RatingBar.OnRatingBarChangeListener{
 
     ArrayList<Song> songs;
     int itemLayout;
@@ -30,18 +30,32 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
 
     @Override
     public SongsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout,viewGroup,false);
-        return new ViewHolder(v);
+       // View v = viewGroup;
+
+       // if (v == null) {
+        View    v = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout, viewGroup, false);
+       // }
+
+        // Set the view to the ViewHolder
+        ViewHolder holder = new ViewHolder(v);
+        holder.stars.setOnRatingBarChangeListener(this);
+
+        //holder.stars.setTag(holder);
+
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(SongsAdapter.ViewHolder viewHolder, int i) {
+        ViewHolder holder = viewHolder;
 
         Song song = songs.get(i);
 
         viewHolder.namesong.setText(song.getSongName());
         viewHolder.artist.setText(song.getSongArtist());
-        viewHolder.stars.setNumStars(song.getStars());
+        viewHolder.stars.setNumStars(3);
+        viewHolder.stars.setTag(i);
+        viewHolder.stars.setRating(songs.get(i).getStars());
 
     }
 
@@ -49,6 +63,8 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
     public int getItemCount() {
         return songs.size();
     }
+
+
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -67,6 +83,14 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.ViewHolder>{
 
 
         }
+
     }
 
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        int position = (Integer) ratingBar.getTag();
+        songs.get(position).setStars(rating);
+       // ratingBar.setRating(songs.get(i).getStars());
+
+    }
 }
